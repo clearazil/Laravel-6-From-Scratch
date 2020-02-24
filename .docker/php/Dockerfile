@@ -1,0 +1,27 @@
+FROM php:7.4-fpm
+
+# Arguments defined in docker-compose.yml
+ARG user
+ARG uid
+
+RUN apt-get update -y && apt-get install -y libonig-dev libmcrypt-dev openssl git curl zip unzip
+
+# Clear cache
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install PHP extensions
+RUN docker-php-ext-install pdo_mysql
+
+# Get latest Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Create system user to run Composer and Artisan Commands
+RUN useradd -G www-data,root -u $uid -d /home/$user $user
+RUN mkdir -p /home/$user/.composer && \
+    chown -R $user:$user /home/$user
+
+RUN mkdir /app
+#COPY .docker/vhosts.conf /etc/apache2/sites-available/000-default.conf
+WORKDIR /app
+USER $user
+#RUN chown -R www-data:www-data /app && a2enmod rewrite
