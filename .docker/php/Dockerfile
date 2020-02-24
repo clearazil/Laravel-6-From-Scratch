@@ -21,7 +21,5 @@ RUN mkdir -p /home/$user/.composer && \
     chown -R $user:$user /home/$user
 
 RUN mkdir /app
-#COPY .docker/vhosts.conf /etc/apache2/sites-available/000-default.conf
 WORKDIR /app
 USER $user
-#RUN chown -R www-data:www-data /app && a2enmod rewrite
