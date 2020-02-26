@@ -13,6 +13,20 @@ services:
         [.:/app]
     container_name: php
 
+  node:
+    build:
+      args:
+        user: nodeuser
+        uid: 1001
+      context: ./.docker/node
+    networks: [frontend, backend]
+    volumes:
+      [.:/app]
+    ports:
+      [1234:1234]
+    container_name: node
+    tty: true
+
   apache:
     build:
       context: ./.docker/apache
