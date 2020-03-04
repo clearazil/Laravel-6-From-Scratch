@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('content')
 <div id="wrapper">
@@ -11,8 +11,10 @@
             {{ $article->body }}
 
             <p class="mt-2">
-                @foreach ($article->tags as $tag)
-                <a href="{{ route('articles.index', ['tag' => $tag->name]) }}">{{ $tag->name }}</a>
+                @foreach($article->tags as $tag)
+                    <a href="{{ route('articles.index', ['tag' => $tag->name]) }}">
+                        {{ $tag->name }}
+                    </a>
                 @endforeach
             </p>
         </div>

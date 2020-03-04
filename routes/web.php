@@ -32,3 +32,7 @@ Route::get('/articles/create', 'ArticlesController@create')->name('articles.crea
 Route::get('/articles/{article}', 'ArticlesController@show')->name('articles.show');
 Route::get('/articles/{article}/edit', 'ArticlesController@edit')->name('articles.edit');
 Route::put('/articles/{article}', 'ArticlesController@update')->name('articles.update');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
