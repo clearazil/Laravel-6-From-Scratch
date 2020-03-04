@@ -41,7 +41,7 @@
                         class="{{ Request::path() === 'about' ? 'current_page_item' : '' }}">
                         <a href="/about" accesskey="3" title="">About Us</a></li>
                     <li
-                        class="{{ Request::path() === route('articles.index') ? 'current_page_item' : '' }}">
+                        class="{{ Request::url() === route('articles.index') ? 'current_page_item' : '' }}">
                         <a href="{{ route('articles.index') }}" accesskey="4" title="">Articles</a>
                     </li>
                     <li
