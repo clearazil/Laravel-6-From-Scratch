@@ -51,14 +51,21 @@ class ArticlesController extends Controller
 
     public function edit(Article $article)
     {
+        $tags = Tag::all();
+
         return view('articles.edit', [
             'article' => $article,
+            'tags' => $tags,
         ]);
     }
 
     public function update(Article $article)
     {
-        $article->update($this->validateArticle());
+        $this->validateArticle();
+        $article->fill(request(['title', 'excerpt', 'body']));
+        $article->save();
+
+        $article->tags()->sync(request('tags'));
 
         return redirect(route('articles.show', $article));
     }
