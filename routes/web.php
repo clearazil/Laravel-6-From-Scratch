@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('index');
 
 Route::get('/about', function () {
     $articles = Article::take(3)->latest()->get();
@@ -24,7 +24,7 @@ Route::get('/about', function () {
     return view('about', [
         'articles' => $articles
     ]);
-});
+})->name('about');
 
 Route::get('/articles', 'ArticlesController@index')->name('articles.index');
 Route::post('/articles', 'ArticlesController@store')->name('articles.store');
@@ -32,6 +32,9 @@ Route::get('/articles/create', 'ArticlesController@create')->name('articles.crea
 Route::get('/articles/{article}', 'ArticlesController@show')->name('articles.show');
 Route::get('/articles/{article}/edit', 'ArticlesController@edit')->name('articles.edit');
 Route::put('/articles/{article}', 'ArticlesController@update')->name('articles.update');
+
+Route::get('/contact', 'ContactController@show')->name('contact.show');
+Route::post('/contact', 'ContactController@store')->name('contact.store');
 
 Auth::routes();
 

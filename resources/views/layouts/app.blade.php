@@ -32,21 +32,21 @@
             <div id="menu">
                 <ul>
                     <li
-                        class="{{ Request::path() === '/' ? 'current_page_item' : '' }}">
+                        class="{{ Request::url() === route('index') ? 'current_page_item' : '' }}">
                         <a href="/" accesskey="1" title="">Homepage</a></li>
                     <li
                         class="{{ Request::path() === 'clients' ? 'current_page_item' : '' }}">
                         <a href="#" accesskey="2" title="">Our Clients</a></li>
                     <li
-                        class="{{ Request::path() === 'about' ? 'current_page_item' : '' }}">
+                        class="{{ Request::url() === route('about') ? 'current_page_item' : '' }}">
                         <a href="/about" accesskey="3" title="">About Us</a></li>
                     <li
                         class="{{ Request::url() === route('articles.index') ? 'current_page_item' : '' }}">
                         <a href="{{ route('articles.index') }}" accesskey="4" title="">Articles</a>
                     </li>
                     <li
-                        class="{{ Request::path() === 'contact' ? 'current_page_item' : '' }}">
-                        <a href="#" accesskey="5" title="">Contact Us</a></li>
+                        class="{{ Request::url() === route('contact.show') ? 'current_page_item' : '' }}">
+                        <a href="{{ route('contact.show') }}" accesskey="5" title="">Contact Us</a></li>
 
                 </ul>
             </div>
