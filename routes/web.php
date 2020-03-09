@@ -36,6 +36,8 @@ Route::put('/articles/{article}', 'ArticlesController@update')->name('articles.u
 Route::get('/payments/create', 'PaymentsController@create')->middleware('auth')->name('payments.create');
 Route::post('/payments', 'PaymentsController@store')->middleware('auth')->name('payments.store');
 
+Route::get('/notifications', 'UserNotificationsController@show')->middleware('auth')->name('user-notifications.show');
+
 Route::get('/contact', 'ContactController@show')->name('contact.show');
 Route::post('/contact', 'ContactController@store')->name('contact.store');
 
