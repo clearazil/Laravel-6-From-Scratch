@@ -11,28 +11,28 @@
 
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" class="form-control @error('title') danger @enderror" name="title" id="title"
+                <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title"
                     aria-describedby="title" placeholder="" value="{{ $article->title }}">
                 @error('title')
-                    <p class="danger">{{ $errors->first('title') }}</p>
+                    <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
 
             <div class="form-group">
                 <label for="excerpt">Excerpt</label>
-                <input type="text" class="form-control @error('excerpt') danger @enderror" name="excerpt" id="excerpt"
+                <input type="text" class="form-control @error('excerpt') is-invalid @enderror" name="excerpt" id="excerpt"
                     aria-describedby="excerpt" placeholder="" value="{{ $article->excerpt }}">
                 @error('excerpt')
-                    <p class="danger">{{ $errors->first('excerpt') }}</p>
+                    <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
 
             <div class="form-group">
                 <label for="body">Body</label>
-                <textarea class="form-control @error('body') danger @enderror" name="body" id="body"
+                <textarea class="form-control @error('body') is-invalid @enderror" name="body" id="body"
                     rows="3">{{ $article->body }}</textarea>
                 @error('body')
-                    <p class="danger">{{ $errors->first('body') }}</p>
+                    <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
 
@@ -40,7 +40,7 @@
                 <label for="tags">Tags</label>
                 <div class="form-group">
                     <label for="tags"></label>
-                    <select class="form-control" name="tags[]" id="tags" multiple>
+                    <select class="form-control @error('tags') is-invalid @enderror" name="tags[]" id="tags" multiple>
                         @foreach($tags as $tag)
                             <option value="{{ $tag->id }}"
                                 {{ $article->tags->contains($tag->id) ? 'selected' : '' }}>
@@ -48,7 +48,7 @@
                         @endforeach
                     </select>
                     @error('tags')
-                        <p class="danger">{{ $message }}</p>
+                        <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
