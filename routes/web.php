@@ -33,6 +33,9 @@ Route::get('/articles/{article}', 'ArticlesController@show')->name('articles.sho
 Route::get('/articles/{article}/edit', 'ArticlesController@edit')->name('articles.edit');
 Route::put('/articles/{article}', 'ArticlesController@update')->name('articles.update');
 
+Route::get('/payments/create', 'PaymentsController@create')->middleware('auth')->name('payments.create');
+Route::post('/payments', 'PaymentsController@store')->middleware('auth')->name('payments.store');
+
 Route::get('/contact', 'ContactController@show')->name('contact.show');
 Route::post('/contact', 'ContactController@store')->name('contact.store');
 
